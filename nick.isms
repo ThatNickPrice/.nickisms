@@ -1,0 +1,82 @@
+#################### BASH PROFILE/NICKISM SHORTCUTS ####################
+alias edbp='vi ~/.bash_profile'
+alias ednick='vi ~/.nickisms/nick.isms'
+alias rlbp='source ~/.bash_profile'
+
+##################### GENERAL COMMANDS ####################
+alias l='pwd; ls -lh'
+alias la='ls -lah'
+alias cl='clear'
+alias su='su -'
+alias fuck='sudo !!'
+alias ..='cd ..; pwd; ls -lh'
+alias cd..='cd ..'
+alias dl='cd ~/downloads'
+alias lg='ls -la | grep'
+alias hg='history | grep'
+alias gh='history | grep'
+
+
+####################  GIT   #########################
+alias gs='git branch; git status'
+alias gd='git diff'
+# gco = git checkout
+# gnb = git checkout -b newBranch Name
+
+#################### DOCKER #########################
+alias ds='docker ps -a'
+alias dimg='docker images'
+alias dk='docker kill'
+
+# remove container
+alias drm='docker rm'
+# remove image
+alias drmi='docker rmi'
+
+# Kill and remove docker container
+function dkrm(){
+	for container in "$@"
+	do
+		docker kill $container
+		docker rm $container
+	done
+}
+
+# remove all stopped containers:
+alias drmstp='docker rm $(docker ps -a -q)'
+
+# Clean out images (removed untagged)
+alias drmiu='docker rmi $(docker images | awk "/^<none>/ {print $3}")'
+
+# Bash into container
+function dex(){
+	docker exec -i -t $1 /bin/bash
+}
+
+
+#################### VENV/PIP #########################
+function mkvenv(){
+	workingdir=${PWD##*/}
+	virtualenv ./.venv_$workingdir
+	source ./.venv_$workingdir/bin/activate
+}
+
+function venv(){
+	workingdir=${PWD##*/}
+	source ./.venv_$workingdir/bin/activate
+}
+
+
+function gpip(){
+	PIP_REQUIRE_VIRTUALENV="0" pip "$@"
+}
+
+
+#################### AWS #########################
+alias cfn='aws cloudformation'
+alias cfnls='cfn describe-stacks'
+alias cfnds='cfn delete-stack --stack-name'
+
+function cfndpl(){
+  cfn deploy --template-file "$1" --stack-name "$2"
+}

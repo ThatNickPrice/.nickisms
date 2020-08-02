@@ -1,0 +1,6 @@
+# Edit this file
+alias edrka='vi ~/.nickisms/rka.isms'
+
+# RKA shortcuts
+alias krieger='ssh nick@192.168.1.113'
+alias figgis='ssh nick@192.168.1.20'
