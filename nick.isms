@@ -24,7 +24,8 @@ alias gd='git diff'
 # gnb = git checkout -b newBranch Name
 
 #################### DOCKER #########################
-alias ds='docker ps -a'
+alias dsa='docker ps -a'
+alias ds='docker ps -a --format "table {{.ID}}\t{{.Names}}\t{{.State}}\t{{.Status}}\t{{.Ports}}"'
 alias dimg='docker images'
 alias dk='docker kill'
 

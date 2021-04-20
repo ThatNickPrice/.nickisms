@@ -16,3 +16,7 @@ alias dcrebuild='docker-compose -f /opt/docker-compose.yml up -d --build'
 alias dclog='docker-compose -f /opt/docker-compose.yml logs --tail=50'
 alias dcflog='docker-compose -f /opt/docker-compose.yml logs -f --tail=10'
 alias dcpull='docker-compose -f /opt/docker-compose.yml pull'
+
+# nextcloud maintenance mode commands
+alias ncmaintmodeon='docker exec --user abc nextcloud php /config/www/nextcloud/occ maintenance:mode --on'
+alias ncmaintmodeoff='docker exec --user abc nextcloud php /config/www/nextcloud/occ maintenance:mode --off'
